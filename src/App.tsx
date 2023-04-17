@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 
-// import { createClient } from '@supabase/supabase-js'
-
 import './App.css'
 import Dashboard from './routes/Dashboard';
 import SideNav from './routes/SideNav';
@@ -13,6 +11,9 @@ import Login from './routes/Login';
 import Projects from './routes/Projects';
 import Register from './routes/Register';
 
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

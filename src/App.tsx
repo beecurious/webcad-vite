@@ -11,12 +11,11 @@ import Login from './routes/Login';
 import Projects from './routes/Projects';
 import Register from './routes/Register';
 
-import { createClient } from '@supabase/supabase-js'
+import supabase from './supabaseClient'
 
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [session, setSession] = useState(null)
 
   return (
     <div className="App bg-grey-200">

@@ -4,14 +4,16 @@ import Login from "./Login";
 
 
 export default function Home() {
-    return(
-    <div >
-    
-    
-    <h1> Hello there</h1>
-    <p> Welcome to the Open-Source CAD revolution.</p>
-    
-    
-    </div>)
+    return (
+    <>
+        <div >
 
+
+            <h1> Hello there</h1>
+            <p> Welcome to the Open-Source CAD revolution.</p>
+
+
+        </div>
+    </>
+    )
 }

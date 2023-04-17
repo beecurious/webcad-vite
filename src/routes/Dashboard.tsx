@@ -2,14 +2,12 @@
 
 export default function Dashboard() {
 
-    return (<>
-    <div>
+    return (
+    <div className="">
 
-        Dashboard information    
-        
-    
+
     </div> 
          
          
-</>)
+)
 }

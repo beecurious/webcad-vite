@@ -1,7 +1,15 @@
 
 
-
 export default function Dashboard() {
 
-    return (<><div> your Dashboard</div> </>)
+    return (<>
+    <div>
+
+        Dashboard information    
+        
+    
+    </div> 
+         
+         
+</>)
 }

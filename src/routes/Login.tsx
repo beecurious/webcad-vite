@@ -19,7 +19,7 @@ export default function Login() {
 
                 <div>
                     <div>Email Address</div>
-                    <input type="text" className=" border-2  rounded-xl  bg-white p-3 mb-4 w-full"/>
+                    <input type="text" className=" border-2   rounded-xl  bg-white p-3 mb-4 w-full border-green-300 ring-green-300 ring-1 "/>
                 </div>
 
                 <div>

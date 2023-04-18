@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 
 import './App.css'
 import Dashboard from './routes/Dashboard';
 import SideNav from './routes/SideNav';
-import Favorites from './routes/Favorites';
 import Home from './routes/Home';
-import HomeNav from './routes/Nav';
+import Nav from './routes/Nav';
 import Login from './routes/Login';
-import Projects from './routes/Projects';
-import Register from './routes/Register';
 
 import supabase from './supabaseClient'
 
-
 function App() {
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState<any|null>(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+    
+    return () => subscription.unsubscribe()
+  }, [])
 
   return (
     <div className="App bg-grey-200">
 
-      <HomeNav/>
+      <Nav/>
 
       <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">
       <Routes>

@@ -39,7 +39,7 @@ function App() {
   }
 
   return (
-    <div className="App bg-grey-200">
+    <div className="App bg-grey-100">
       <Nav session={session}/>
 
       <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">

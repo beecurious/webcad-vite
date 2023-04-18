@@ -19,16 +19,19 @@ function App() {
 
   return (
     <div className="App bg-grey-200">
+
+      <HomeNav/>
+
+      <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">
       <Routes>
-        <Route path='/' element={<HomeNav />}>
-          <Route index element={<Home />} />
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
+          <Route path='/' element={<Home/>} />
+          <Route path='login' element={<Login/>} />
           <Route path='/Dashboard' element={<SideNav />}>
             <Route index={true} element={<Dashboard />} />
-          </Route>
         </Route>
       </Routes>
+      </div>
+      
     </div>
   )
 }

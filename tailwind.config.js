@@ -18,7 +18,8 @@ export default {
         600: '#8A8A8A',
         700: '#5F5F5F',
         800: '#060606'
-      }
+      },
+      'red':'#dd2F25'
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],

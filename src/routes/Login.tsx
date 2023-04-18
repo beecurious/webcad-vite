@@ -6,21 +6,21 @@ export default function Login() {
     const [showPass, setShowPass] = useState("false");
     const [emailValue, setEmailValue] = useState("");
     const [passValue, setPassValue] = useState("");
+    const [message, setMessage] = useState("");
 
     const navigate = useNavigate();
 
     async function signInWithEmail() {
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const {data, error } = await supabase.auth.signInWithPassword({
           email: emailValue,
           password: passValue,
         })
-
         
-        if(!data){
+        if(!data.user){
             console.log("log in failed")
+            setMessage(" Password or email is not correct");
         }
         else{
-            
             navigate("/dashboard")
         }
 
@@ -41,7 +41,7 @@ export default function Login() {
                 </div>
 
             </div>
-
+            <div className="text-red">{message}</div>
             <button className=" bg-grey-200 text-black font-sans font-semibold text-lg w-fit h-fit p-4 my-4 border-black border-2 rounded-2xl" onClick={signInWithEmail} > Login</button>
 
             {/* <Link to="/Dashboard">Login</Link> */}

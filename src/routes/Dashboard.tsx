@@ -1,21 +1,15 @@
 
-import { useState } from "react";
 import supabase from "../supabaseClient"
+import { useState } from "react";
 
 
-export default function Dashboard() 
-{
-    const getData = async() =>
-    {
-        const data = await supabase.from("projects").select("*");
-        console.log("t")
-    }
+
+export default function Dashboard() {
 
     return (
 
     <div className="">
-
-
+        
     </div> 
          
          

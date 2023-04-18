@@ -29,7 +29,6 @@ function App() {
 
   return (
     <div className="App bg-grey-200">
-
       <Nav/>
 
       <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">
@@ -41,7 +40,6 @@ function App() {
         </Route>
       </Routes>
       </div>
-      
     </div>
   )
 }

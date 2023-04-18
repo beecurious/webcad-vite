@@ -9,15 +9,14 @@ import { useEffect } from "react";
 export default function SideNav({session}:any) {
 
     const navigate = useNavigate()
-
+    
     useEffect(()=>{
         if(!session){
-            //User is logged out, redirect to login
+            //User session doesn't exist, redirect to login.
             navigate('/login')
         }
-    },[])
+    },[session])
     
-
     const code = 'hello World'
 
     async function createPost() {
@@ -29,8 +28,6 @@ export default function SideNav({session}:any) {
             .single();
         //fetchPosts() 
     }
-
-
 
     return (
         <div className="SideNav w-full h-full flex flex-row">

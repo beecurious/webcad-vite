@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 
-export default function Dashboard({session}) {
+export default function Dashboard() {
     
 
     return (

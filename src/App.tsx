@@ -33,7 +33,7 @@ function App() {
     return(<></>)
     return(
       <Route path='/Dashboard' element={<SideNav session={session}/>}>
-        <Route index={true} element={<Dashboard session={session}/>} />
+        <Route index={true} element={<Dashboard/>} />
       </Route>
     )
   }

@@ -1,10 +1,12 @@
 
+import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
-export default function Dashboard() {
+export default function Dashboard({session}) {
+    
 
     return (
 

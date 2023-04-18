@@ -24,20 +24,30 @@ function App() {
       setSession(session)
     })
     
-    return () => subscription.unsubscribe()
+    // return () => subscription.unsubscribe()
   }, [])
+
+  const authedRoutes = () =>
+  {
+    if(false)
+    return(<></>)
+    return(
+      <Route path='/Dashboard' element={<SideNav session={session}/>}>
+        <Route index={true} element={<Dashboard session={session}/>} />
+      </Route>
+    )
+  }
 
   return (
     <div className="App bg-grey-200">
-      <Nav/>
+      <Nav session={session}/>
 
       <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">
       <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='login' element={<Login/>} />
-          <Route path='/Dashboard' element={<SideNav />}>
-            <Route index={true} element={<Dashboard />} />
-        </Route>
+          <Route path='login' element={<Login session={session}/>} />
+          {authedRoutes()}
+          <Route path='*' element={<div> You fucked up </div>} />
       </Routes>
       </div>
     </div>

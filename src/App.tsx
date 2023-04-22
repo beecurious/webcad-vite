@@ -15,11 +15,12 @@ import { AuthSession, AuthUser } from '@supabase/supabase-js';
 
 import type { Database } from '../utils/database.types'
 import AddProject from './routes/AddProject';
+import Renderer from './routes/Renderer';
+import PageUnavailable from './routes/PageUnavailable';
 
 function App() {
   const [session, setSession] = useState<AuthSession | null>(null)
   const [user, setUser] = useState<AuthUser | null>(null)
-  const [projects, setProjects] = useState<Database.projects | null>(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => { setSession(session) })
@@ -32,27 +33,8 @@ function App() {
       setSession(session)
     })
 
-    // return () => subscription.unsubscribe()
+    return () => subscription.unsubscribe()
   }, [])
-
-  useEffect(() => {
-    if (user) {
-      getAllProjects();
-    }
-  }, [user])
-
-
-  const getAllProjects = async () => {
-
-    let { data: projects, error } = await supabase
-      .from('projects')
-      .select('*')
-      .eq('user_id', user!.id)
-
-    if (!error) {
-      setProjects(projects);
-    }
-  }
 
 
   return (
@@ -63,14 +45,13 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='login' element={<Login session={session} />} />
-          {session &&
-          <Route path='dashboard' element={<SideNav session={session} user={user} />}>
-            <Route index={true} element={<Dashboard projects={projects} />} />
-            <Route path='favorites' element={<Favorites projects={projects} />} />
-            <Route path='projects' element={<Projects projects={projects} />} />
-            <Route path='new' element={<AddProject projects={projects} user={user}/>} />
-          </Route>}
-          <Route path='*' element={<div> You fucked up </div>} />
+
+
+          <Route path='dashboard' element={<SideNav session={session} user={user} />} />
+          <Route path='editor' element={<Renderer />} />
+
+
+          <Route path='*' element={<PageUnavailable/>} />
         </Routes>
       </div>
     </div>

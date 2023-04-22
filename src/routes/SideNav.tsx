@@ -1,5 +1,4 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import supabase from "../supabaseClient";
 import { useEffect, useState } from "react";
 
 import DashboardIcon from '../assets/icons/DashboardIcon.svg'
@@ -8,9 +7,10 @@ import ProjectsIcon from '../assets/icons/ProjectsIcon.svg'
 import MenuIcon from '../assets/icons/MenuIcon.svg'
 import DocumentationIcon from '../assets/icons/DocumentsIcon.svg'
 import { AuthSession } from "@supabase/auth-ui-react/dist/components/Auth/UserContext";
-import { AuthUser } from "@supabase/supabase-js";
 
 import type {Database} from '../../utils/Database.types'
+import Dashboard from "./Dashboard";
+import supabase from "../supabaseClient";
 
 type TypeSideNavButton = {
     collapse:boolean;
@@ -25,21 +25,39 @@ export function SideNavButton({collapse, icon, text}:TypeSideNavButton)
     <div className="flex flex-row p-3 justify-start items-end hover:bg-grey-100 rounded-lg">     
     <img src={icon} className="p-1"/>
     {!collapse && <div className="ml-1 p-0 align-bottom font-serif text-black">{text}</div>}
-
     </div>)
 }
 
 export default function SideNav({session, user}:AuthSession) {
     const [collapse, setCollapse] = useState(false);
+    const [projects, setProjects] = useState<Database.projects | null>(null);
+
     const navigate = useNavigate()
 
     useEffect(()=>{
-        if(!session){
+        if(!session)
+        {
             //User session doesn't exist, redirect to login.
             navigate('/login')
         }
+        else
+        {
+            getAllProjects();
+            console.log(projects);
+        }
     },[])
-
+    
+      const getAllProjects = async () => {
+    
+        let { data: projects, error } = await supabase
+          .from('projects')
+          .select('*')
+          .eq('user_id', session!.user.id)
+    
+        if (!error) {
+          setProjects(projects);
+        }
+      }
 
     return (
         <div className="Content w-full h-full flex flex-row">
@@ -57,8 +75,10 @@ export default function SideNav({session, user}:AuthSession) {
                     <SideNavButton collapse={collapse} icon={DocumentationIcon} text="Documentation" />
                 </div>
             </div>
-
-            <Outlet />
+            
+            <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">
+            <Dashboard projects={projects} />
+            </div>
         </div>
     )
 }

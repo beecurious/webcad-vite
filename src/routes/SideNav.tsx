@@ -7,8 +7,10 @@ import FavoritesIcon from '../assets/icons/FavoritesIcon.svg'
 import ProjectsIcon from '../assets/icons/ProjectsIcon.svg'
 import MenuIcon from '../assets/icons/MenuIcon.svg'
 import DocumentationIcon from '../assets/icons/DocumentsIcon.svg'
+import { AuthSession } from "@supabase/auth-ui-react/dist/components/Auth/UserContext";
+import { AuthUser } from "@supabase/supabase-js";
 
-
+import type {Database} from '../../utils/Database.types'
 
 type TypeSideNavButton = {
     collapse:boolean;
@@ -27,10 +29,8 @@ export function SideNavButton({collapse, icon, text}:TypeSideNavButton)
     </div>)
 }
 
-
-export default function SideNav({session}:any) {
+export default function SideNav({session, user}:AuthSession) {
     const [collapse, setCollapse] = useState(false);
-
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -38,7 +38,8 @@ export default function SideNav({session}:any) {
             //User session doesn't exist, redirect to login.
             navigate('/login')
         }
-    },[session])
+    },[])
+
 
     return (
         <div className="Content w-full h-full flex flex-row">
@@ -58,7 +59,6 @@ export default function SideNav({session}:any) {
             </div>
 
             <Outlet />
-
         </div>
     )
 }

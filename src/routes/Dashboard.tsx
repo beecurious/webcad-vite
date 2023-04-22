@@ -2,12 +2,11 @@
 import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient"
 import { useEffect, useState } from "react";
+import type {Database} from '../../utils/Database.types'
 
 
-
-export default function Dashboard() {
-    
-
+export default function Dashboard({projects}:Database) {
+  
     return (
    <>   
     <div className="w-36"></div>

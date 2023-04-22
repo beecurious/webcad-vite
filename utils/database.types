@@ -11,25 +11,31 @@ export interface Database {
     Tables: {
       projects: {
         Row: {
-          code: string | null
+          code: string
           created_at: string | null
-          id: number
-          name: string | null
-          uid: string
+          favorite: boolean
+          modified_at: string | null
+          name: string
+          project_id: string
+          user_id: string
         }
         Insert: {
-          code?: string | null
+          code?: string
           created_at?: string | null
-          id?: number
-          name?: string | null
-          uid: string
+          favorite?: boolean
+          modified_at?: string | null
+          name?: string
+          project_id?: string
+          user_id: string
         }
         Update: {
-          code?: string | null
+          code?: string
           created_at?: string | null
-          id?: number
-          name?: string | null
-          uid?: string
+          favorite?: boolean
+          modified_at?: string | null
+          name?: string
+          project_id?: string
+          user_id?: string
         }
       }
     }

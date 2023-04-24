@@ -2,14 +2,13 @@ import React, { SyntheticEvent, Component, useEffect } from 'react';
 // import * as cad from '@jscad/modeling'
 // import serialize from '@jscad/stl-serializer'
 
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
-import { PerspectiveCamera } from 'three';
+// import * as THREE from 'three';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
+// import { PerspectiveCamera } from 'three';
 
 
-function generateModel() 
-{
+function generateModel() {
   // let cuboid1 = cad.primitives.cuboid({ size: [20, 20, 10] })
 
   // const rawData = serialize.serialize({ binary: true }, cuboid1)

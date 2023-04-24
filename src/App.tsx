@@ -49,6 +49,7 @@ function App() {
 
           <Route path='dashboard' element={<SideNav session={session} user={user} />} />
           <Route path='editor' element={<Renderer />} />
+          <Route path='addProject' element={<AddProject session={session} user={user} />}/>
 
 
           <Route path='*' element={<PageUnavailable/>} />

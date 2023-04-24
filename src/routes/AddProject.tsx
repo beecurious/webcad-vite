@@ -21,9 +21,9 @@ export default function AddProject({ projects, user}: Database) {
             .insert([
                 {
                     code: 'render(cube(5))',
-                    created_at: null,
+                    created_at: Date().slice(0,24) ,
                     favorite: favorite,
-                    modified_at: null,
+                    modified_at: Date().slice(0,24) ,
                     name: name,
                     user_id: user.id
                   }

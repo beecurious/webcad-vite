@@ -22,8 +22,8 @@ export default function Dashboard({ projects }: Database) {
     )
     );
     return (
-        <div className="-mt-36">
-            <div className=" -ml-32 -mt-36">
+        <div className="">
+            <div className="">
                 <p className="text-2xl"> Project List </p>
             </div>
             
@@ -32,7 +32,12 @@ export default function Dashboard({ projects }: Database) {
                 {tile?"Tile layout":"List Layout"}
             </button>
             </div>
-            {projectsList}
+
+            <div className=" flex flex-col justify-center gap-2 ">
+                {projectsList}
+            </div>
+
+            
             </div>
     )
 }

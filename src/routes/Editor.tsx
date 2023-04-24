@@ -1,12 +1,20 @@
-import React, { SyntheticEvent, Component, useEffect } from 'react';
-// import * as cad from '@jscad/modeling'
-// import serialize from '@jscad/stl-serializer'
+import DashboardIcon from '../assets/icons/DashboardIcon.svg'
+import FavoritesIcon from '../assets/icons/FavoritesIcon.svg'
+import ProjectsIcon from '../assets/icons/ProjectsIcon.svg'
+import MenuIcon from '../assets/icons/MenuIcon.svg'
+import DocumentationIcon from '../assets/icons/DocumentsIcon.svg'
+
 
 // import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 // import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
 // import { PerspectiveCamera } from 'three';
 
+import React, { SyntheticEvent, Component, useEffect, useRef, useState, useMemo } from "react";
+import { Canvas, useFrame } from "react-three-fiber";
+import five from "./assets/five.png"
+import SideNavButton from '../components/SideNavButton';
+import 
 
 function generateModel() {
   // let cuboid1 = cad.primitives.cuboid({ size: [20, 20, 10] })
@@ -27,6 +35,56 @@ function generateModel() {
   const geometry = new STLLoader().parse(buffer);
 
   return geometry;
+}
+
+
+
+
+function Editor() {
+  const [collapse, setCollapse] = useState(false);
+
+  return (
+    <div className='Editor max-h-screen max-w-screen h-full w-full flex flex-row bg-grey-100 overflow-clip'>
+      <div className="SideNav h-full border-solid border-2 border-t-0 w-fit pt-2 flex flex-col items-start transition-all justify-between bg-grey-200">
+
+        <div className="SideNavTop">
+          <SideNavButton collapse={collapse} icon={DashboardIcon} text="Code" />
+          <SideNavButton collapse={collapse} icon={DocumentationIcon} text="Documentation" />
+        </div>
+        <div onClick={() => { setCollapse(!collapse) }} className="self-end p-2 hover:text-lilac">{collapse ? ">>" : "<<"}</div>
+        <div className="SideNavBottom">
+          <SideNavButton collapse={collapse} icon={ProjectsIcon} text="Project Settings" />
+          <SideNavButton collapse={collapse} icon={MenuIcon} text="New Project" />
+        </div>
+      </div>
+
+      <div className='content flex flex-col justify-start align-middle grow'>
+        <div className='ToolBar flex flex-row gap-2 p-2 border-solid border-r-2 border-b-2 border-black'>
+          <div className='hover:bg-grey-400 p-2 rounded-lg font-sans'> Reload </div>
+          <div className='hover:bg-grey-400 p-2 rounded-lg font-sans'> Render </div>
+          <div className='hover:bg-grey-400 p-2 rounded-lg font-sans'> Save </div>
+
+        </div>
+
+        <div className='flex flex-row grow w-full'>
+          <div className='grow w-1/2 p-2 border-r-2'>
+            <textarea className='border-2 rounded-lg resize-none w-full h-full' name=" Code Area" id="" cols={30} rows={10}>
+
+            </textarea>
+          </div>
+          <div className='grow w-full bg-grey-700 h-min'>
+            <Renderer />
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  );
+
 }
 
 
@@ -156,30 +214,34 @@ class Renderer extends Component {
     console.log("renderer size refreshed")
   }
 
-  //elements to render
   render() {
-    return (
-      <div className="App">
-        <div id="left-side">
-          <div id='editor-tool-bar'>
-            <button onClick={() => { this.resizeRenderer() }}> Resize </button>
-            <button onClick={() => { this.renderModel(new THREE.BoxGeometry(5, 5, 1)) }}> Render </button>
-            <button onClick={() => { generateModel() }}> test </button>
-          </div>
-          <textarea id='editor' placeholder='Write your code here...' defaultValue={`render -> cube("origin", 1);`}>
-
-
-          </textarea>
-
-        </div>
-
-        <div id="right-side">
-          <div id="renderCanvasPlaceholder" />
-        </div>
-      </div>
-    )
+    return (<div id="renderCanvasPlaceholder" />)
   }
+  //elements to render
+  // render() {
+  //   return (
+  //     <div className="Editor flex flex-row w-screen h-screen">
+  //       <div>
+  //         <div>
+  //           <button onClick={() => { this.resizeRenderer() }}> Resize </button>
+  //           <button onClick={() => { this.renderModel(new THREE.BoxGeometry(5, 5, 1)) }}> Render </button>
+  //           <button onClick={() => { generateModel() }}> test </button>
+  //         </div>
+  //         <textarea id='editor' placeholder='Write your code here...' defaultValue={`render -> cube("origin", 1);`}>
+
+
+  //         </textarea>
+
+  //       </div>
+
+  //       <div id="right-side">
+  //         <div id="renderCanvasPlaceholder" />
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
 }
 
-export default Renderer;
+
+export default Editor;

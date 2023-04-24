@@ -15,8 +15,8 @@ import { AuthSession, AuthUser } from '@supabase/supabase-js';
 
 import type { Database } from '../utils/database.types'
 import AddProject from './routes/AddProject';
-import Renderer from './routes/Renderer';
 import PageUnavailable from './routes/PageUnavailable';
+import Editor from './routes/Editor';
 
 function App() {
   const [session, setSession] = useState<AuthSession | null>(null)
@@ -48,7 +48,7 @@ function App() {
 
 
           <Route path='dashboard' element={<SideNav session={session} user={user} />} />
-          <Route path='editor' element={<Renderer />} />
+          <Route path='editor' element={<Editor />} />
 
 
           <Route path='*' element={<PageUnavailable/>} />

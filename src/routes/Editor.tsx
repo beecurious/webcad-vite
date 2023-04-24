@@ -5,42 +5,42 @@ import MenuIcon from '../assets/icons/MenuIcon.svg'
 import DocumentationIcon from '../assets/icons/DocumentsIcon.svg'
 
 
-// import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-// import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
-// import { PerspectiveCamera } from 'three';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
+import { PerspectiveCamera } from 'three';
 
 import React, { SyntheticEvent, Component, useEffect, useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import five from "./assets/five.png"
 import SideNavButton from '../components/SideNavButton';
-import 
 
-function generateModel() {
-  // let cuboid1 = cad.primitives.cuboid({ size: [20, 20, 10] })
+// function generateModel() {
+//   // let cuboid1 = cad.primitives.cuboid({ size: [20, 20, 10] })
 
-  // const rawData = serialize.serialize({ binary: true }, cuboid1)
+//   // const rawData = serialize.serialize({ binary: true }, cuboid1)
 
-  // //in browser (with browserify etc)
-  // const blob = new Blob(rawData)
+//   // //in browser (with browserify etc)
+//   // const blob = new Blob(rawData)
 
-  // // const data = blob.arrayBuffer();
-  // const buffer = blob.arrayBuffer();
+//   // // const data = blob.arrayBuffer();
+//   // const buffer = blob.arrayBuffer();
 
-  // console.log(buffer);
-  // return new STLLoader().parse(buffer);
+//   // console.log(buffer);
+//   // return new STLLoader().parse(buffer);
 
-  let buffer: any;
+//   let buffer: any;
 
-  const geometry = new STLLoader().parse(buffer);
+//   const geometry = new STLLoader().parse(buffer);
 
-  return geometry;
-}
-
+//   return geometry;
+// }
 
 
 
-function Editor() {
+
+function Editor() 
+{
   const [collapse, setCollapse] = useState(false);
 
   return (

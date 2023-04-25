@@ -9,11 +9,9 @@ import Card from "../components/Card";
 export default function Dashboard({ projects }: Database) {
 
     const [tile, setTile] = useState(true)
-    console.log(projects)
     if (!projects) {
         return (<div>loading</div>)
     }
-    console.log(projects)
 
     const projectsList = projects.map((element: Database) => (
         <div key={element.project_id}>
@@ -22,22 +20,26 @@ export default function Dashboard({ projects }: Database) {
     )
     );
     return (
-        <div className="">
-            <div className="">
-                <p className="text-2xl"> Project List </p>
+        <div className=" " >
+            <div className="  ">
+            <div className=" flex flex-row gap-2 ">
+                <p className="text-2xl font-semibold text-black"> Projects </p>
+                <button className="rounded-lg text-black bg-lilac hover:text-white hover:bg-grey-700 mb-2 p-1 text-xl font-md " onClick={() => { setTile(!tile)}}>
+                    {tile?"Tile layout":"List Layout"}
+                </button>
             </div>
-            
-            <div>
-            <button className="rounded-lg text-black bg-lilac hover:text-white hover:bg-grey-700" onClick={() => { setTile(!tile)}}>
-                {tile?"Tile layout":"List Layout"}
-            </button>
-            </div>
-
-            <div className=" flex flex-col justify-center gap-2 ">
-                {projectsList}
             </div>
 
-            
+            <div className=" w-full ">
+                {(tile)?
+                <div className="grid grid-cols-3 gap-3 grow max-w-4xl ">
+                    {projectsList}
+                </div>:
+                <div className="grid grid-cols-1 gap-3 grow max-w-4xl">
+                    {projectsList}
+                </div>
+                } 
             </div>
+        </div>
     )
 }

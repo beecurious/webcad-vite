@@ -48,7 +48,7 @@ function App() {
 
 
           <Route path='dashboard' element={<SideNav session={session} user={user} />} />
-          <Route path='editor' element={<Editor />} />
+          <Route path='editor/:pid' element={<Editor />} />
 
 
           <Route path='*' element={<PageUnavailable/>} />

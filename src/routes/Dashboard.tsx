@@ -9,6 +9,7 @@ import Card from "../components/Card";
 export default function Dashboard({ projects }: Database) {
 
     const [tile, setTile] = useState(true)
+    
     if (!projects) {
         return (<div>loading</div>)
     }
@@ -19,6 +20,8 @@ export default function Dashboard({ projects }: Database) {
         </div>
     )
     );
+
+    
     return (
         <div className=" " >
             <div className="  ">

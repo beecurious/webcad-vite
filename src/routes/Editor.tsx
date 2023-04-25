@@ -88,7 +88,7 @@ function Editor({ session }: AuthSession) {
 
           <div className='flex flex-row grow w-full overflow-hidden'>
             <div className='grow w-1/2 p-2 border-r-2'>
-              <textarea value={code!} onChange={(e) => { setCode(e.target.value) }} className='border-2 rounded-lg resize-none w-full h-full p-2' name=" Code Area" id="" cols={30} rows={10}>
+              <textarea value={(!code?"":code)} onChange={(e) => { setCode(e.target.value) }} className='border-2 rounded-lg resize-none w-full h-full p-2' name=" Code Area" id="" cols={30} rows={10}>
 
               </textarea>
             </div>

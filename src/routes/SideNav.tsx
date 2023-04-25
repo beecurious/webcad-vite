@@ -12,39 +12,46 @@ import type {Database} from '../../utils/Database.types'
 import Dashboard from "./Dashboard";
 import supabase from "../supabaseClient";
 import SideNavButton from "../components/SideNavButton";
+import ProjectList from "../components/ProjectList";
+import { useQuery } from "react-query";
 
 
 export default function SideNav({session, user}:AuthSession) {
-    const [collapse, setCollapse] = useState(false);
-    const [projects, setProjects] = useState<Database.projects | null>(null);
+    const [collapse, setCollapse] = useState(true);
+    const [projectList, setProjectList] = useState<Database | null>(null);
 
     const navigate = useNavigate()
+    
+      const { data: projects, status } = useQuery('projectData', async () => {
 
-    useEffect(()=>{
-        if(!session)
-        {
-            //User session doesn't exist, redirect to login.
-            navigate('/login')
-        }
-        else
-        {
-            getAllProjects();
-        }
-    },[])
-    
-      const getAllProjects = async () => {
-    
-        let { data: projects, error } = await supabase
-          .from('projects')
-          .select('*')
-          .eq('user_id', session!.user.id)
-    
-        if (!error) {
-          setProjects(projects);
-          console.log(projects);
+        const session = await supabase.auth.getSession();
+        
+            const { data: projects, error } = await supabase.from("projects").select("*").eq('user_id', session.data.session?.user.id);
+            if (!error && projectList == null) {
+              console.log(projects);
+              setProjectList(projects);
+              }
+            
+            return projects;
 
-        }
-      }
+    });
+    
+    
+
+  if (!session) {
+    return (
+      <> <div>
+        You are not logged in!
+      </div>
+        <Link to='/login'> Login </Link> </>
+    )
+  }
+
+  if (status == 'loading' || !projects) { return <span className="loader"></span> }
+
+  if (!projects) { console.log("It isn't goint to load, something broke again.")}
+
+  if (status == 'success') {
 
     return (
         <div className="Content w-full h-full flex flex-row">
@@ -53,8 +60,8 @@ export default function SideNav({session, user}:AuthSession) {
                
                 <div className="SideNavTop">
                     <SideNavButton collapse={collapse} icon={DashboardIcon} text="Dashboard"/>
-                    <SideNavButton collapse={collapse} icon={FavoritesIcon} text="Favorites" />
-                    <SideNavButton collapse={collapse} icon={ProjectsIcon} text="All projects" />
+                    {/* <SideNavButton collapse={collapse} icon={FavoritesIcon} text="Favorites" /> */}
+                    {/* <SideNavButton collapse={collapse} icon={ProjectsIcon} text="All projects" /> */}
                 </div>
                 <div  onClick={()=>{setCollapse(!collapse)}} className="self-end p-2 hover:text-lilac">{collapse?">>":"<<"}</div>
                 <div className="SideNavBottom">
@@ -63,9 +70,12 @@ export default function SideNav({session, user}:AuthSession) {
                 </div>
             </div>
             
-            <div className=" h-5/6 w-screen flex flex-col flex-grow justify-center items-center align-middle">
-            <Dashboard projects={projects} />
+            <div className=" h-full w-full grow flex flex-col justify-center align-middle items-center">
+            <ProjectList projects={projects}/>
             </div>
         </div>
-    )
+    )}
+
+
+    return(<></>)
 }

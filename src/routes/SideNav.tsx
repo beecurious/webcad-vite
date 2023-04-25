@@ -29,7 +29,6 @@ export default function SideNav({session, user}:AuthSession) {
         else
         {
             getAllProjects();
-            console.log(projects);
         }
     },[])
     
@@ -42,6 +41,8 @@ export default function SideNav({session, user}:AuthSession) {
     
         if (!error) {
           setProjects(projects);
+          console.log(projects);
+
         }
       }
 

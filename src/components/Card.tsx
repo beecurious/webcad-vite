@@ -21,8 +21,8 @@ function Card({ project, tile }: cardType) {
     if (tile) {
         return (
 
-            <button className='bg-grey-600 text-white rounded-lg h-auto min-w-full p-2 border-2 ' onClick={()=>{navigate(`/editor/${project.project_id}`)}}>
-                 <Link to={`/editor/${project.project_id}`} className=' text-white hover:text-lilac' >
+            <button className='bg-grey-400 rounded-lg h-auto min-w-full p-2 border-solid border-black border-2 text-black' onClick={()=>{navigate(`/editor/${project.project_id}`)}}>
+                 <Link to={`/editor/${project.project_id}`} className=' text-black hover:text-lilac' >
                  <p className=" font-bold "> {project.name}</p>
                  </Link>
                 { !!project.modified_at && <p> Modified at: {project.modified_at.slice(0,19)}</p> }
@@ -33,7 +33,7 @@ function Card({ project, tile }: cardType) {
     else {
         return (
             <div>
-                <button className="bg-grey-600 text-white rounded-lg h-auto min-w-full p-2 border-2" onClick={()=>{navigate(`/editor/${project.project_id}`)}}>
+                <button className="bg-grey-400 text-white rounded-lg h-auto min-w-full p-2 border-2" onClick={()=>{navigate(`/editor/${project.project_id}`)}}>
                    <Link to={`/editor/${project.project_id}`} className='  font-bold   text-white hover:text-lilac' >
                   {project.name}
                  </Link>

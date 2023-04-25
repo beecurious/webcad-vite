@@ -22,7 +22,7 @@ import { Link, useParams } from 'react-router-dom'
 
 
 
-function Editor({ session }: Session) {
+function Editor({ session }: AuthSession) {
   const [collapse, setCollapse] = useState(false);
   const [code, setCode] = useState<string | null>(null);
   const { pid } = useParams();

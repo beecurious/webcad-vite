@@ -2,9 +2,10 @@ import { useState } from "react"
 import type { Database } from '../../utils/database.types'
 import { Link, useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
+import { AuthUser } from "@supabase/supabase-js";
 
 
-export default function AddProject({ projects, user}: Database) {
+export default function AddProject({user}: any) {
     const [name, setName] = useState<string>("");
     const [favorite, setFavorite] = useState(false);
     const navigate = useNavigate();

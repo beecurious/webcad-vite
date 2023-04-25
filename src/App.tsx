@@ -48,6 +48,8 @@ function App() {
 
 
           <Route path='dashboard' element={<SideNav session={session} user={user} />} />
+          <Route path='dashboard/new' element={<AddProject user={user} />} />
+
           <Route path='editor/:pid' element={<Editor session={session} />} />
 
 

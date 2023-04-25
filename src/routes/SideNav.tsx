@@ -58,7 +58,7 @@ export default function SideNav({session, user}:AuthSession) {
                 </div>
                 <div  onClick={()=>{setCollapse(!collapse)}} className="self-end p-2 hover:text-lilac">{collapse?">>":"<<"}</div>
                 <div className="SideNavBottom">
-                    <SideNavButton collapse={collapse} icon={MenuIcon} text="New Project" />
+                    <SideNavButton collapse={collapse} icon={MenuIcon} text="New Project" handleOnClick={()=>{navigate("new")}}/>
                     <SideNavButton collapse={collapse} icon={DocumentationIcon} text="Documentation" />
                 </div>
             </div>
